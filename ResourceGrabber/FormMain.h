@@ -47,6 +47,9 @@ namespace ResourceGrabber {
 	private: System::Windows::Forms::Button^  btnOpenClipboard;
 	private: System::Windows::Forms::RichTextBox^  rtxtLog;
 	private: System::Windows::Forms::Button^  btnSetTextOnClipbard;
+	private: System::Windows::Forms::TabControl^  tabMain;
+	private: System::Windows::Forms::TabPage^  pageClipBoard;
+	private: System::Windows::Forms::TabPage^  tabPage2;
 
 
 	private:
@@ -63,13 +66,18 @@ namespace ResourceGrabber {
 		void InitializeComponent(void)
 		{
 			this->spRoot = (gcnew System::Windows::Forms::SplitContainer());
-			this->rtxtLog = (gcnew System::Windows::Forms::RichTextBox());
-			this->btnOpenClipboard = (gcnew System::Windows::Forms::Button());
-			this->btnCloseClipboard = (gcnew System::Windows::Forms::Button());
 			this->btnSetTextOnClipbard = (gcnew System::Windows::Forms::Button());
+			this->btnCloseClipboard = (gcnew System::Windows::Forms::Button());
+			this->btnOpenClipboard = (gcnew System::Windows::Forms::Button());
+			this->rtxtLog = (gcnew System::Windows::Forms::RichTextBox());
+			this->tabMain = (gcnew System::Windows::Forms::TabControl());
+			this->pageClipBoard = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
 			this->spRoot->Panel1->SuspendLayout();
 			this->spRoot->Panel2->SuspendLayout();
 			this->spRoot->SuspendLayout();
+			this->tabMain->SuspendLayout();
+			this->pageClipBoard->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// spRoot
@@ -81,9 +89,7 @@ namespace ResourceGrabber {
 			// 
 			// spRoot.Panel1
 			// 
-			this->spRoot->Panel1->Controls->Add(this->btnSetTextOnClipbard);
-			this->spRoot->Panel1->Controls->Add(this->btnCloseClipboard);
-			this->spRoot->Panel1->Controls->Add(this->btnOpenClipboard);
+			this->spRoot->Panel1->Controls->Add(this->tabMain);
 			// 
 			// spRoot.Panel2
 			// 
@@ -91,6 +97,36 @@ namespace ResourceGrabber {
 			this->spRoot->Size = System::Drawing::Size(732, 513);
 			this->spRoot->SplitterDistance = 328;
 			this->spRoot->TabIndex = 0;
+			// 
+			// btnSetTextOnClipbard
+			// 
+			this->btnSetTextOnClipbard->Location = System::Drawing::Point(8, 35);
+			this->btnSetTextOnClipbard->Name = L"btnSetTextOnClipbard";
+			this->btnSetTextOnClipbard->Size = System::Drawing::Size(131, 23);
+			this->btnSetTextOnClipbard->TabIndex = 2;
+			this->btnSetTextOnClipbard->Text = L"Set Text on Clipbard";
+			this->btnSetTextOnClipbard->UseVisualStyleBackColor = true;
+			this->btnSetTextOnClipbard->Click += gcnew System::EventHandler(this, &FormMain::btnSetTextOnClipbard_Click);
+			// 
+			// btnCloseClipboard
+			// 
+			this->btnCloseClipboard->Location = System::Drawing::Point(8, 273);
+			this->btnCloseClipboard->Name = L"btnCloseClipboard";
+			this->btnCloseClipboard->Size = System::Drawing::Size(131, 23);
+			this->btnCloseClipboard->TabIndex = 1;
+			this->btnCloseClipboard->Text = L"Close Clipbard";
+			this->btnCloseClipboard->UseVisualStyleBackColor = true;
+			this->btnCloseClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnCloseClipboard_Click);
+			// 
+			// btnOpenClipboard
+			// 
+			this->btnOpenClipboard->Location = System::Drawing::Point(8, 6);
+			this->btnOpenClipboard->Name = L"btnOpenClipboard";
+			this->btnOpenClipboard->Size = System::Drawing::Size(131, 23);
+			this->btnOpenClipboard->TabIndex = 0;
+			this->btnOpenClipboard->Text = L"Open Clipbard";
+			this->btnOpenClipboard->UseVisualStyleBackColor = true;
+			this->btnOpenClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnOpenClipboard_Click);
 			// 
 			// rtxtLog
 			// 
@@ -101,35 +137,39 @@ namespace ResourceGrabber {
 			this->rtxtLog->TabIndex = 0;
 			this->rtxtLog->Text = L"";
 			// 
-			// btnOpenClipboard
+			// tabMain
 			// 
-			this->btnOpenClipboard->Location = System::Drawing::Point(12, 12);
-			this->btnOpenClipboard->Name = L"btnOpenClipboard";
-			this->btnOpenClipboard->Size = System::Drawing::Size(131, 23);
-			this->btnOpenClipboard->TabIndex = 0;
-			this->btnOpenClipboard->Text = L"Open Clipbard";
-			this->btnOpenClipboard->UseVisualStyleBackColor = true;
-			this->btnOpenClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnOpenClipboard_Click);
+			this->tabMain->Controls->Add(this->pageClipBoard);
+			this->tabMain->Controls->Add(this->tabPage2);
+			this->tabMain->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tabMain->Location = System::Drawing::Point(0, 0);
+			this->tabMain->Name = L"tabMain";
+			this->tabMain->SelectedIndex = 0;
+			this->tabMain->Size = System::Drawing::Size(732, 328);
+			this->tabMain->TabIndex = 3;
 			// 
-			// btnCloseClipboard
+			// pageClipBoard
 			// 
-			this->btnCloseClipboard->Location = System::Drawing::Point(12, 70);
-			this->btnCloseClipboard->Name = L"btnCloseClipboard";
-			this->btnCloseClipboard->Size = System::Drawing::Size(131, 23);
-			this->btnCloseClipboard->TabIndex = 1;
-			this->btnCloseClipboard->Text = L"Close Clipbard";
-			this->btnCloseClipboard->UseVisualStyleBackColor = true;
-			this->btnCloseClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnCloseClipboard_Click);
+			this->pageClipBoard->Controls->Add(this->btnSetTextOnClipbard);
+			this->pageClipBoard->Controls->Add(this->btnOpenClipboard);
+			this->pageClipBoard->Controls->Add(this->btnCloseClipboard);
+			this->pageClipBoard->Location = System::Drawing::Point(4, 22);
+			this->pageClipBoard->Name = L"pageClipBoard";
+			this->pageClipBoard->Padding = System::Windows::Forms::Padding(3);
+			this->pageClipBoard->Size = System::Drawing::Size(724, 302);
+			this->pageClipBoard->TabIndex = 0;
+			this->pageClipBoard->Text = L"Clipboard";
+			this->pageClipBoard->UseVisualStyleBackColor = true;
 			// 
-			// btnSetTextOnClipbard
+			// tabPage2
 			// 
-			this->btnSetTextOnClipbard->Location = System::Drawing::Point(12, 41);
-			this->btnSetTextOnClipbard->Name = L"btnSetTextOnClipbard";
-			this->btnSetTextOnClipbard->Size = System::Drawing::Size(131, 23);
-			this->btnSetTextOnClipbard->TabIndex = 2;
-			this->btnSetTextOnClipbard->Text = L"Set Text on Clipbard";
-			this->btnSetTextOnClipbard->UseVisualStyleBackColor = true;
-			this->btnSetTextOnClipbard->Click += gcnew System::EventHandler(this, &FormMain::btnSetTextOnClipbard_Click);
+			this->tabPage2->Location = System::Drawing::Point(4, 22);
+			this->tabPage2->Name = L"tabPage2";
+			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage2->Size = System::Drawing::Size(724, 302);
+			this->tabPage2->TabIndex = 1;
+			this->tabPage2->Text = L"tabPage2";
+			this->tabPage2->UseVisualStyleBackColor = true;
 			// 
 			// FormMain
 			// 
@@ -142,6 +182,8 @@ namespace ResourceGrabber {
 			this->spRoot->Panel1->ResumeLayout(false);
 			this->spRoot->Panel2->ResumeLayout(false);
 			this->spRoot->ResumeLayout(false);
+			this->tabMain->ResumeLayout(false);
+			this->pageClipBoard->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -161,6 +203,9 @@ namespace ResourceGrabber {
 		{
 			rtxtLog->AppendText(text);
 			rtxtLog->AppendText(Environment::NewLine);
+
+			rtxtLog->Select(rtxtLog->TextLength-1,0);
+			rtxtLog->ScrollToCaret();
 		}
 		void AddToErrorLog(String^ text)
 		{
