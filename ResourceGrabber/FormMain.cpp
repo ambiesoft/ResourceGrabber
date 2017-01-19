@@ -2,6 +2,8 @@
 #include "FormMain.h"
 
 #include "../../MyUtility/GetLastErrorString.h"
+#include "../../MyUtility/GetOpenFile.h"
+#include "../../amblibcpp/amblibcpp/amblibcpp.h"
 
 using namespace System;
 using namespace System::Text;
@@ -35,9 +37,58 @@ namespace ResourceGrabber {
 			AddToErrorLog(I18N(L"OpenClipbard failed"), dwLE);
 		}
 	}
+
+	System::Void FormMain::btnEmptyClipboard_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		if(!EmptyClipboard())
+		{
+			DWORD dwLE = GetLastError();
+			AddToErrorLog(I18N(L"EmptyClipboard failed"), dwLE);
+			return;
+		}
+		AddToErrorLog(I18N(L"EmptyClipboard succeeded"), GetLastError());
+	}
 	System::Void FormMain::btnSetTextOnClipbard_Click(System::Object^  sender, System::EventArgs^  e) 
 	{
+		LPWSTR pSTR = L"ResourceGrabber";
+		if ( !pSTR || pSTR[0]==0 )
+		{
+			return;
+		}
 
+		size_t strsize = lstrlenW(pSTR);
+		HGLOBAL h = GlobalAlloc(
+			GMEM_MOVEABLE|GMEM_DDESHARE,
+			(strsize+1)*sizeof(wchar_t));
+
+		if(h==NULL)
+		{
+			DWORD dwLE = GetLastError();
+			AddToErrorLog(I18N(L"GlobalAlloc failed"), dwLE);
+			return;
+		}
+
+		BOOL bRet = FALSE;
+		LPWSTR p = (LPWSTR)GlobalLock(h);
+		if(p==NULL)
+		{
+			DWORD dwLE = GetLastError();
+			AddToErrorLog(I18N(L"GlobalLock failed"), dwLE);
+			return;
+		}
+		lstrcpyW(p, pSTR);
+
+		if(!SetClipboardData(CF_UNICODETEXT,h))
+		{
+			DWORD dwLE = GetLastError();
+			AddToErrorLog(I18N(L"SetClipboardData failed"), dwLE);
+			return;
+		}
+
+		GlobalUnlock(h);
+
+		AddToErrorLog(I18N(L"SetClipboardData succeeded"), GetLastError());
+		return;
 	}
 	System::Void FormMain::btnCloseClipboard_Click(System::Object^  sender, System::EventArgs^  e)
 	{
@@ -53,5 +104,52 @@ namespace ResourceGrabber {
 
 	}
 
+	System::Void FormMain::btnBrowse_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		wstring fullpath;
+		if(!GetOpenFile(
+				 (HWND)this->Handle.ToPointer(),
+				 NULL, // LPCTSTR pFilter, 
+				 NULL, // LPCTSTR pInitialDir,
+				 NULL, // LPCTSTR pTitle,
+				 &fullpath,
+				 NULL))
+		{
+			return;
+		}
 
+		txtPath->Text = gcnew String(fullpath.c_str());
+	}
+
+
+	System::Void FormMain::btnOpenWithNoShare_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		hFile_ = CreateFile(Ambiesoft::CppUtils::getStdWstring(txtPath->Text).c_str(),
+			GENERIC_READ,
+			0, // share none
+			NULL, //sec
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL,
+			NULL);
+
+		if(hFile_==INVALID_HANDLE_VALUE)
+		{
+			DWORD dwLE = GetLastError();
+			AddToErrorLog(I18N(L"CreateFile failed"), dwLE);
+			return;
+		}
+
+		AddToLog(I18N(L"CreateFile succeeded"));
+	}
+
+	System::Void FormMain::btnCloseHandle_Click(System::Object^  sender, System::EventArgs^  e)
+	{
+		if(!CloseHandle(hFile_))
+		{
+			DWORD dwLE = GetLastError();
+			AddToErrorLog(I18N(L"CloseHandle failed"), dwLE);
+			return;
+		}
+		AddToLog(I18N(L"CloseHandle succeeded"));
+	}
 }

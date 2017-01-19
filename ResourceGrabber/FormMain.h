@@ -49,7 +49,14 @@ namespace ResourceGrabber {
 	private: System::Windows::Forms::Button^  btnSetTextOnClipbard;
 	private: System::Windows::Forms::TabControl^  tabMain;
 	private: System::Windows::Forms::TabPage^  pageClipBoard;
-	private: System::Windows::Forms::TabPage^  tabPage2;
+	private: System::Windows::Forms::TabPage^  pageFile;
+
+	private: System::Windows::Forms::Button^  btnEmptyClipboard;
+	private: System::Windows::Forms::TextBox^  txtPath;
+	private: System::Windows::Forms::Button^  btnBrowse;
+	private: System::Windows::Forms::Button^  btnOpenWithNoShare;
+	private: System::Windows::Forms::Button^  btnCloseHandle;
+
 
 
 	private:
@@ -66,18 +73,24 @@ namespace ResourceGrabber {
 		void InitializeComponent(void)
 		{
 			this->spRoot = (gcnew System::Windows::Forms::SplitContainer());
-			this->btnSetTextOnClipbard = (gcnew System::Windows::Forms::Button());
-			this->btnCloseClipboard = (gcnew System::Windows::Forms::Button());
-			this->btnOpenClipboard = (gcnew System::Windows::Forms::Button());
-			this->rtxtLog = (gcnew System::Windows::Forms::RichTextBox());
 			this->tabMain = (gcnew System::Windows::Forms::TabControl());
 			this->pageClipBoard = (gcnew System::Windows::Forms::TabPage());
-			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->btnEmptyClipboard = (gcnew System::Windows::Forms::Button());
+			this->btnSetTextOnClipbard = (gcnew System::Windows::Forms::Button());
+			this->btnOpenClipboard = (gcnew System::Windows::Forms::Button());
+			this->btnCloseClipboard = (gcnew System::Windows::Forms::Button());
+			this->pageFile = (gcnew System::Windows::Forms::TabPage());
+			this->btnOpenWithNoShare = (gcnew System::Windows::Forms::Button());
+			this->btnBrowse = (gcnew System::Windows::Forms::Button());
+			this->txtPath = (gcnew System::Windows::Forms::TextBox());
+			this->rtxtLog = (gcnew System::Windows::Forms::RichTextBox());
+			this->btnCloseHandle = (gcnew System::Windows::Forms::Button());
 			this->spRoot->Panel1->SuspendLayout();
 			this->spRoot->Panel2->SuspendLayout();
 			this->spRoot->SuspendLayout();
 			this->tabMain->SuspendLayout();
 			this->pageClipBoard->SuspendLayout();
+			this->pageFile->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// spRoot
@@ -98,49 +111,10 @@ namespace ResourceGrabber {
 			this->spRoot->SplitterDistance = 328;
 			this->spRoot->TabIndex = 0;
 			// 
-			// btnSetTextOnClipbard
-			// 
-			this->btnSetTextOnClipbard->Location = System::Drawing::Point(8, 35);
-			this->btnSetTextOnClipbard->Name = L"btnSetTextOnClipbard";
-			this->btnSetTextOnClipbard->Size = System::Drawing::Size(131, 23);
-			this->btnSetTextOnClipbard->TabIndex = 2;
-			this->btnSetTextOnClipbard->Text = L"Set Text on Clipbard";
-			this->btnSetTextOnClipbard->UseVisualStyleBackColor = true;
-			this->btnSetTextOnClipbard->Click += gcnew System::EventHandler(this, &FormMain::btnSetTextOnClipbard_Click);
-			// 
-			// btnCloseClipboard
-			// 
-			this->btnCloseClipboard->Location = System::Drawing::Point(8, 273);
-			this->btnCloseClipboard->Name = L"btnCloseClipboard";
-			this->btnCloseClipboard->Size = System::Drawing::Size(131, 23);
-			this->btnCloseClipboard->TabIndex = 1;
-			this->btnCloseClipboard->Text = L"Close Clipbard";
-			this->btnCloseClipboard->UseVisualStyleBackColor = true;
-			this->btnCloseClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnCloseClipboard_Click);
-			// 
-			// btnOpenClipboard
-			// 
-			this->btnOpenClipboard->Location = System::Drawing::Point(8, 6);
-			this->btnOpenClipboard->Name = L"btnOpenClipboard";
-			this->btnOpenClipboard->Size = System::Drawing::Size(131, 23);
-			this->btnOpenClipboard->TabIndex = 0;
-			this->btnOpenClipboard->Text = L"Open Clipbard";
-			this->btnOpenClipboard->UseVisualStyleBackColor = true;
-			this->btnOpenClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnOpenClipboard_Click);
-			// 
-			// rtxtLog
-			// 
-			this->rtxtLog->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->rtxtLog->Location = System::Drawing::Point(0, 0);
-			this->rtxtLog->Name = L"rtxtLog";
-			this->rtxtLog->Size = System::Drawing::Size(732, 181);
-			this->rtxtLog->TabIndex = 0;
-			this->rtxtLog->Text = L"";
-			// 
 			// tabMain
 			// 
 			this->tabMain->Controls->Add(this->pageClipBoard);
-			this->tabMain->Controls->Add(this->tabPage2);
+			this->tabMain->Controls->Add(this->pageFile);
 			this->tabMain->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->tabMain->Location = System::Drawing::Point(0, 0);
 			this->tabMain->Name = L"tabMain";
@@ -150,6 +124,7 @@ namespace ResourceGrabber {
 			// 
 			// pageClipBoard
 			// 
+			this->pageClipBoard->Controls->Add(this->btnEmptyClipboard);
 			this->pageClipBoard->Controls->Add(this->btnSetTextOnClipbard);
 			this->pageClipBoard->Controls->Add(this->btnOpenClipboard);
 			this->pageClipBoard->Controls->Add(this->btnCloseClipboard);
@@ -161,15 +136,105 @@ namespace ResourceGrabber {
 			this->pageClipBoard->Text = L"Clipboard";
 			this->pageClipBoard->UseVisualStyleBackColor = true;
 			// 
-			// tabPage2
+			// btnEmptyClipboard
 			// 
-			this->tabPage2->Location = System::Drawing::Point(4, 22);
-			this->tabPage2->Name = L"tabPage2";
-			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(724, 302);
-			this->tabPage2->TabIndex = 1;
-			this->tabPage2->Text = L"tabPage2";
-			this->tabPage2->UseVisualStyleBackColor = true;
+			this->btnEmptyClipboard->Location = System::Drawing::Point(8, 35);
+			this->btnEmptyClipboard->Name = L"btnEmptyClipboard";
+			this->btnEmptyClipboard->Size = System::Drawing::Size(131, 23);
+			this->btnEmptyClipboard->TabIndex = 3;
+			this->btnEmptyClipboard->Text = L"&Empty Clipboard";
+			this->btnEmptyClipboard->UseVisualStyleBackColor = true;
+			this->btnEmptyClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnEmptyClipboard_Click);
+			// 
+			// btnSetTextOnClipbard
+			// 
+			this->btnSetTextOnClipbard->Location = System::Drawing::Point(8, 64);
+			this->btnSetTextOnClipbard->Name = L"btnSetTextOnClipbard";
+			this->btnSetTextOnClipbard->Size = System::Drawing::Size(131, 23);
+			this->btnSetTextOnClipbard->TabIndex = 2;
+			this->btnSetTextOnClipbard->Text = L"Set Text on Clipbard";
+			this->btnSetTextOnClipbard->UseVisualStyleBackColor = true;
+			this->btnSetTextOnClipbard->Click += gcnew System::EventHandler(this, &FormMain::btnSetTextOnClipbard_Click);
+			// 
+			// btnOpenClipboard
+			// 
+			this->btnOpenClipboard->Location = System::Drawing::Point(8, 6);
+			this->btnOpenClipboard->Name = L"btnOpenClipboard";
+			this->btnOpenClipboard->Size = System::Drawing::Size(131, 23);
+			this->btnOpenClipboard->TabIndex = 0;
+			this->btnOpenClipboard->Text = L"Open Clipbard";
+			this->btnOpenClipboard->UseVisualStyleBackColor = true;
+			this->btnOpenClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnOpenClipboard_Click);
+			// 
+			// btnCloseClipboard
+			// 
+			this->btnCloseClipboard->Location = System::Drawing::Point(8, 273);
+			this->btnCloseClipboard->Name = L"btnCloseClipboard";
+			this->btnCloseClipboard->Size = System::Drawing::Size(131, 23);
+			this->btnCloseClipboard->TabIndex = 1;
+			this->btnCloseClipboard->Text = L"Close Clipbard";
+			this->btnCloseClipboard->UseVisualStyleBackColor = true;
+			this->btnCloseClipboard->Click += gcnew System::EventHandler(this, &FormMain::btnCloseClipboard_Click);
+			// 
+			// pageFile
+			// 
+			this->pageFile->Controls->Add(this->btnCloseHandle);
+			this->pageFile->Controls->Add(this->btnOpenWithNoShare);
+			this->pageFile->Controls->Add(this->btnBrowse);
+			this->pageFile->Controls->Add(this->txtPath);
+			this->pageFile->Location = System::Drawing::Point(4, 22);
+			this->pageFile->Name = L"pageFile";
+			this->pageFile->Padding = System::Windows::Forms::Padding(3);
+			this->pageFile->Size = System::Drawing::Size(724, 302);
+			this->pageFile->TabIndex = 1;
+			this->pageFile->Text = L"File";
+			this->pageFile->UseVisualStyleBackColor = true;
+			// 
+			// btnOpenWithNoShare
+			// 
+			this->btnOpenWithNoShare->Location = System::Drawing::Point(8, 83);
+			this->btnOpenWithNoShare->Name = L"btnOpenWithNoShare";
+			this->btnOpenWithNoShare->Size = System::Drawing::Size(152, 23);
+			this->btnOpenWithNoShare->TabIndex = 2;
+			this->btnOpenWithNoShare->Text = L"&Open with no share";
+			this->btnOpenWithNoShare->UseVisualStyleBackColor = true;
+			this->btnOpenWithNoShare->Click += gcnew System::EventHandler(this, &FormMain::btnOpenWithNoShare_Click);
+			// 
+			// btnBrowse
+			// 
+			this->btnBrowse->Location = System::Drawing::Point(674, 33);
+			this->btnBrowse->Name = L"btnBrowse";
+			this->btnBrowse->Size = System::Drawing::Size(42, 19);
+			this->btnBrowse->TabIndex = 1;
+			this->btnBrowse->Text = L"&...";
+			this->btnBrowse->UseVisualStyleBackColor = true;
+			this->btnBrowse->Click += gcnew System::EventHandler(this, &FormMain::btnBrowse_Click);
+			// 
+			// txtPath
+			// 
+			this->txtPath->Location = System::Drawing::Point(8, 33);
+			this->txtPath->Name = L"txtPath";
+			this->txtPath->Size = System::Drawing::Size(660, 19);
+			this->txtPath->TabIndex = 0;
+			// 
+			// rtxtLog
+			// 
+			this->rtxtLog->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->rtxtLog->Location = System::Drawing::Point(0, 0);
+			this->rtxtLog->Name = L"rtxtLog";
+			this->rtxtLog->Size = System::Drawing::Size(732, 181);
+			this->rtxtLog->TabIndex = 0;
+			this->rtxtLog->Text = L"";
+			// 
+			// btnCloseHandle
+			// 
+			this->btnCloseHandle->Location = System::Drawing::Point(8, 112);
+			this->btnCloseHandle->Name = L"btnCloseHandle";
+			this->btnCloseHandle->Size = System::Drawing::Size(152, 23);
+			this->btnCloseHandle->TabIndex = 3;
+			this->btnCloseHandle->Text = L"&Close handle";
+			this->btnCloseHandle->UseVisualStyleBackColor = true;
+			this->btnCloseHandle->Click += gcnew System::EventHandler(this, &FormMain::btnCloseHandle_Click);
 			// 
 			// FormMain
 			// 
@@ -184,6 +249,8 @@ namespace ResourceGrabber {
 			this->spRoot->ResumeLayout(false);
 			this->tabMain->ResumeLayout(false);
 			this->pageClipBoard->ResumeLayout(false);
+			this->pageFile->ResumeLayout(false);
+			this->pageFile->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
@@ -191,6 +258,7 @@ namespace ResourceGrabber {
 
 
 	private:
+		HANDLE hFile_;
 		property HWND Hwnd 
 		{
 			HWND get()
@@ -230,14 +298,10 @@ namespace ResourceGrabber {
 	private: System::Void btnOpenClipboard_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void btnSetTextOnClipbard_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void btnCloseClipboard_Click(System::Object^  sender, System::EventArgs^  e);
-
-
-
-
-
-
-
-
+	private: System::Void btnEmptyClipboard_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void btnBrowse_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void btnOpenWithNoShare_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void btnCloseHandle_Click(System::Object^  sender, System::EventArgs^  e);
 
 };
 }
