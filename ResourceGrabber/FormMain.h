@@ -72,6 +72,7 @@ namespace ResourceGrabber {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(FormMain::typeid));
 			this->spRoot = (gcnew System::Windows::Forms::SplitContainer());
 			this->tabMain = (gcnew System::Windows::Forms::TabControl());
 			this->pageClipBoard = (gcnew System::Windows::Forms::TabPage());
@@ -80,11 +81,11 @@ namespace ResourceGrabber {
 			this->btnOpenClipboard = (gcnew System::Windows::Forms::Button());
 			this->btnCloseClipboard = (gcnew System::Windows::Forms::Button());
 			this->pageFile = (gcnew System::Windows::Forms::TabPage());
+			this->btnCloseHandle = (gcnew System::Windows::Forms::Button());
 			this->btnOpenWithNoShare = (gcnew System::Windows::Forms::Button());
 			this->btnBrowse = (gcnew System::Windows::Forms::Button());
 			this->txtPath = (gcnew System::Windows::Forms::TextBox());
 			this->rtxtLog = (gcnew System::Windows::Forms::RichTextBox());
-			this->btnCloseHandle = (gcnew System::Windows::Forms::Button());
 			this->spRoot->Panel1->SuspendLayout();
 			this->spRoot->Panel2->SuspendLayout();
 			this->spRoot->SuspendLayout();
@@ -190,6 +191,16 @@ namespace ResourceGrabber {
 			this->pageFile->Text = L"File";
 			this->pageFile->UseVisualStyleBackColor = true;
 			// 
+			// btnCloseHandle
+			// 
+			this->btnCloseHandle->Location = System::Drawing::Point(8, 112);
+			this->btnCloseHandle->Name = L"btnCloseHandle";
+			this->btnCloseHandle->Size = System::Drawing::Size(152, 23);
+			this->btnCloseHandle->TabIndex = 3;
+			this->btnCloseHandle->Text = L"&Close handle";
+			this->btnCloseHandle->UseVisualStyleBackColor = true;
+			this->btnCloseHandle->Click += gcnew System::EventHandler(this, &FormMain::btnCloseHandle_Click);
+			// 
 			// btnOpenWithNoShare
 			// 
 			this->btnOpenWithNoShare->Location = System::Drawing::Point(8, 83);
@@ -226,22 +237,13 @@ namespace ResourceGrabber {
 			this->rtxtLog->TabIndex = 0;
 			this->rtxtLog->Text = L"";
 			// 
-			// btnCloseHandle
-			// 
-			this->btnCloseHandle->Location = System::Drawing::Point(8, 112);
-			this->btnCloseHandle->Name = L"btnCloseHandle";
-			this->btnCloseHandle->Size = System::Drawing::Size(152, 23);
-			this->btnCloseHandle->TabIndex = 3;
-			this->btnCloseHandle->Text = L"&Close handle";
-			this->btnCloseHandle->UseVisualStyleBackColor = true;
-			this->btnCloseHandle->Click += gcnew System::EventHandler(this, &FormMain::btnCloseHandle_Click);
-			// 
 			// FormMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(732, 513);
 			this->Controls->Add(this->spRoot);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"FormMain";
 			this->Text = L"FormMain";
 			this->spRoot->Panel1->ResumeLayout(false);
