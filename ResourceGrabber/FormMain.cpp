@@ -1,14 +1,18 @@
 #include "stdafx.h"
 #include "FormMain.h"
 
-#include "../../MyUtility/GetLastErrorString.h"
-#include "../../MyUtility/GetOpenFile.h"
-#include "../../amblibcpp/amblibcpp/amblibcpp.h"
+#include "../../lsMisc/GetLastErrorString.h"
+#include "../../lsMisc/GetOpenFile.h"
+#include "../../lsMisc/getStdString.net.h"
 
 using namespace System;
 using namespace System::Text;
+using namespace System::IO;
 
 using namespace std;
+
+using namespace Ambiesoft;
+
 namespace ResourceGrabber {
 
 	void FormMain::AddToErrorLog(String^ text, DWORD dwLastError)
@@ -124,7 +128,7 @@ namespace ResourceGrabber {
 
 	System::Void FormMain::btnOpenWithNoShare_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		hFile_ = CreateFile(Ambiesoft::CppUtils::getStdWstring(txtPath->Text).c_str(),
+		hFile_ = CreateFile(getStdWstring(txtPath->Text).c_str(),
 			GENERIC_READ,
 			0, // share none
 			NULL, //sec
@@ -152,4 +156,58 @@ namespace ResourceGrabber {
 		}
 		AddToLog(I18N(L"CloseHandle succeeded"));
 	}
+
+		
+	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
+	{
+		this->Text = ProductName;
+
+		int intval;
+		Profile::GetInt(SECTION_OPTION, KEY_SELECTEDTAB, 0, intval, IniPath);
+		if (0 <= intval && intval < tabMain->TabCount)
+		{
+			tabMain->SelectedIndex = intval;
+		}
+	}
+	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
+	{
+		bool failed = false;
+		failed |= !Profile::WriteInt(SECTION_OPTION, KEY_SELECTEDTAB, tabMain->SelectedIndex, IniPath);
+
+		if (failed)
+		{
+			CppUtils::Alert(I18N(L"Failed to save ini."));
+		}
+	}
+	String^ FormMain::IniPath::get()
+	{
+		return Path::Combine(Path::GetDirectoryName(Application::ExecutablePath),
+			Application::ProductName + L".ini");
+	}
+
+	System::Void FormMain::txtPath_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
+	{
+		if (e->Data->GetDataPresent(DataFormats::FileDrop, true))
+		{
+			cli::array<String^>^ ss = (cli::array<String^>^)e->Data->GetData(DataFormats::FileDrop, true);
+			for each(String^ s in ss)
+			{
+				txtPath->Text = s;
+				break;
+			}
+		}
+	}
+	System::Void FormMain::txtPath_DragEnter(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
+	{
+		if (e->Data->GetDataPresent(DataFormats::FileDrop, true))
+			e->Effect = DragDropEffects::Copy;
+	}
+	System::Void FormMain::txtPath_DragLeave(System::Object^  sender, System::EventArgs^  e)
+	{}
+	System::Void FormMain::txtPath_DragOver(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
+	{
+		if (e->Data->GetDataPresent(DataFormats::FileDrop, true))
+			e->Effect = DragDropEffects::Copy;
+	}
+
 }
