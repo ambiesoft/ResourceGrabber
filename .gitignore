@@ -1,0 +1,11 @@
+
+# /
+/Debug
+/Release
+/ResourceGrabber.ncb
+/ResourceGrabber.suo
+
+# /ResourceGrabber/
+/ResourceGrabber/Debug
+/ResourceGrabber/Release
+/ResourceGrabber/*.user
