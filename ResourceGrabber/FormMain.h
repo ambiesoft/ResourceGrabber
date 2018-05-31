@@ -9,29 +9,21 @@ namespace ResourceGrabber {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
-	/// <summary>
-	/// FormMain の概要
-	///
-	/// 警告: このクラスの名前を変更する場合、このクラスが依存するすべての .resx ファイルに関連付けられた
-	///          マネージ リソース コンパイラ ツールに対して 'Resource File Name' プロパティを
-	///          変更する必要があります。この変更を行わないと、
-	///          デザイナと、このフォームに関連付けられたローカライズ済みリソースとが、
-	///          正しく相互に利用できなくなります。
-	/// </summary>
 	public ref class FormMain : public System::Windows::Forms::Form
 	{
 		literal String^ SECTION_OPTION = L"Option";
 		literal String^ KEY_SELECTEDTAB = L"SelectedTab";
 
+		static initonly String^ inipath_;
+
 	public:
-		FormMain(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: ここにコンストラクタ コードを追加します
-			//
+		static FormMain() {
+			inipath_ = Path::Combine(Path::GetDirectoryName(Application::ExecutablePath),
+				Path::GetFileNameWithoutExtension(Application::ExecutablePath) + L".ini");
 		}
+		FormMain();
 
 	protected:
 		/// <summary>
@@ -112,8 +104,8 @@ namespace ResourceGrabber {
 			// spRoot.Panel2
 			// 
 			this->spRoot->Panel2->Controls->Add(this->rtxtLog);
-			this->spRoot->Size = System::Drawing::Size(732, 556);
-			this->spRoot->SplitterDistance = 355;
+			this->spRoot->Size = System::Drawing::Size(732, 513);
+			this->spRoot->SplitterDistance = 327;
 			this->spRoot->TabIndex = 0;
 			// 
 			// tabMain
@@ -124,7 +116,7 @@ namespace ResourceGrabber {
 			this->tabMain->Location = System::Drawing::Point(0, 0);
 			this->tabMain->Name = L"tabMain";
 			this->tabMain->SelectedIndex = 0;
-			this->tabMain->Size = System::Drawing::Size(732, 355);
+			this->tabMain->Size = System::Drawing::Size(732, 327);
 			this->tabMain->TabIndex = 3;
 			// 
 			// pageClipBoard
@@ -136,16 +128,16 @@ namespace ResourceGrabber {
 			this->pageClipBoard->Location = System::Drawing::Point(4, 22);
 			this->pageClipBoard->Name = L"pageClipBoard";
 			this->pageClipBoard->Padding = System::Windows::Forms::Padding(3);
-			this->pageClipBoard->Size = System::Drawing::Size(724, 329);
+			this->pageClipBoard->Size = System::Drawing::Size(724, 301);
 			this->pageClipBoard->TabIndex = 0;
 			this->pageClipBoard->Text = L"Clipboard";
 			this->pageClipBoard->UseVisualStyleBackColor = true;
 			// 
 			// btnEmptyClipboard
 			// 
-			this->btnEmptyClipboard->Location = System::Drawing::Point(8, 38);
+			this->btnEmptyClipboard->Location = System::Drawing::Point(8, 35);
 			this->btnEmptyClipboard->Name = L"btnEmptyClipboard";
-			this->btnEmptyClipboard->Size = System::Drawing::Size(131, 25);
+			this->btnEmptyClipboard->Size = System::Drawing::Size(131, 23);
 			this->btnEmptyClipboard->TabIndex = 3;
 			this->btnEmptyClipboard->Text = L"&Empty Clipboard";
 			this->btnEmptyClipboard->UseVisualStyleBackColor = true;
@@ -153,9 +145,9 @@ namespace ResourceGrabber {
 			// 
 			// btnSetTextOnClipbard
 			// 
-			this->btnSetTextOnClipbard->Location = System::Drawing::Point(8, 69);
+			this->btnSetTextOnClipbard->Location = System::Drawing::Point(8, 64);
 			this->btnSetTextOnClipbard->Name = L"btnSetTextOnClipbard";
-			this->btnSetTextOnClipbard->Size = System::Drawing::Size(131, 25);
+			this->btnSetTextOnClipbard->Size = System::Drawing::Size(131, 23);
 			this->btnSetTextOnClipbard->TabIndex = 2;
 			this->btnSetTextOnClipbard->Text = L"Set Text on Clipbard";
 			this->btnSetTextOnClipbard->UseVisualStyleBackColor = true;
@@ -163,9 +155,9 @@ namespace ResourceGrabber {
 			// 
 			// btnOpenClipboard
 			// 
-			this->btnOpenClipboard->Location = System::Drawing::Point(8, 7);
+			this->btnOpenClipboard->Location = System::Drawing::Point(8, 6);
 			this->btnOpenClipboard->Name = L"btnOpenClipboard";
-			this->btnOpenClipboard->Size = System::Drawing::Size(131, 25);
+			this->btnOpenClipboard->Size = System::Drawing::Size(131, 23);
 			this->btnOpenClipboard->TabIndex = 0;
 			this->btnOpenClipboard->Text = L"Open Clipbard";
 			this->btnOpenClipboard->UseVisualStyleBackColor = true;
@@ -173,9 +165,9 @@ namespace ResourceGrabber {
 			// 
 			// btnCloseClipboard
 			// 
-			this->btnCloseClipboard->Location = System::Drawing::Point(8, 296);
+			this->btnCloseClipboard->Location = System::Drawing::Point(8, 273);
 			this->btnCloseClipboard->Name = L"btnCloseClipboard";
-			this->btnCloseClipboard->Size = System::Drawing::Size(131, 25);
+			this->btnCloseClipboard->Size = System::Drawing::Size(131, 23);
 			this->btnCloseClipboard->TabIndex = 1;
 			this->btnCloseClipboard->Text = L"Close Clipbard";
 			this->btnCloseClipboard->UseVisualStyleBackColor = true;
@@ -190,16 +182,16 @@ namespace ResourceGrabber {
 			this->pageFile->Location = System::Drawing::Point(4, 22);
 			this->pageFile->Name = L"pageFile";
 			this->pageFile->Padding = System::Windows::Forms::Padding(3);
-			this->pageFile->Size = System::Drawing::Size(724, 329);
+			this->pageFile->Size = System::Drawing::Size(724, 301);
 			this->pageFile->TabIndex = 1;
 			this->pageFile->Text = L"File";
 			this->pageFile->UseVisualStyleBackColor = true;
 			// 
 			// btnCloseHandle
 			// 
-			this->btnCloseHandle->Location = System::Drawing::Point(8, 121);
+			this->btnCloseHandle->Location = System::Drawing::Point(8, 272);
 			this->btnCloseHandle->Name = L"btnCloseHandle";
-			this->btnCloseHandle->Size = System::Drawing::Size(152, 25);
+			this->btnCloseHandle->Size = System::Drawing::Size(660, 23);
 			this->btnCloseHandle->TabIndex = 3;
 			this->btnCloseHandle->Text = L"&Close handle";
 			this->btnCloseHandle->UseVisualStyleBackColor = true;
@@ -207,9 +199,9 @@ namespace ResourceGrabber {
 			// 
 			// btnOpenWithNoShare
 			// 
-			this->btnOpenWithNoShare->Location = System::Drawing::Point(8, 90);
+			this->btnOpenWithNoShare->Location = System::Drawing::Point(8, 58);
 			this->btnOpenWithNoShare->Name = L"btnOpenWithNoShare";
-			this->btnOpenWithNoShare->Size = System::Drawing::Size(152, 25);
+			this->btnOpenWithNoShare->Size = System::Drawing::Size(660, 23);
 			this->btnOpenWithNoShare->TabIndex = 2;
 			this->btnOpenWithNoShare->Text = L"&Open with no share";
 			this->btnOpenWithNoShare->UseVisualStyleBackColor = true;
@@ -217,9 +209,9 @@ namespace ResourceGrabber {
 			// 
 			// btnBrowse
 			// 
-			this->btnBrowse->Location = System::Drawing::Point(674, 36);
+			this->btnBrowse->Location = System::Drawing::Point(674, 33);
 			this->btnBrowse->Name = L"btnBrowse";
-			this->btnBrowse->Size = System::Drawing::Size(42, 21);
+			this->btnBrowse->Size = System::Drawing::Size(42, 19);
 			this->btnBrowse->TabIndex = 1;
 			this->btnBrowse->Text = L"&...";
 			this->btnBrowse->UseVisualStyleBackColor = true;
@@ -228,9 +220,9 @@ namespace ResourceGrabber {
 			// txtPath
 			// 
 			this->txtPath->AllowDrop = true;
-			this->txtPath->Location = System::Drawing::Point(8, 36);
+			this->txtPath->Location = System::Drawing::Point(8, 33);
 			this->txtPath->Name = L"txtPath";
-			this->txtPath->Size = System::Drawing::Size(660, 20);
+			this->txtPath->Size = System::Drawing::Size(660, 19);
 			this->txtPath->TabIndex = 0;
 			this->txtPath->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &FormMain::txtPath_DragDrop);
 			this->txtPath->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &FormMain::txtPath_DragEnter);
@@ -242,15 +234,15 @@ namespace ResourceGrabber {
 			this->rtxtLog->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->rtxtLog->Location = System::Drawing::Point(0, 0);
 			this->rtxtLog->Name = L"rtxtLog";
-			this->rtxtLog->Size = System::Drawing::Size(732, 197);
+			this->rtxtLog->Size = System::Drawing::Size(732, 182);
 			this->rtxtLog->TabIndex = 0;
 			this->rtxtLog->Text = L"";
 			// 
 			// FormMain
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(732, 556);
+			this->ClientSize = System::Drawing::Size(732, 513);
 			this->Controls->Add(this->spRoot);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"FormMain";
@@ -281,7 +273,9 @@ namespace ResourceGrabber {
 		}
 		property String^ IniPath
 		{
-			String^ get();
+			String^ get() {
+				return inipath_;
+			}
 		}
 		void AddToLog(String^ text)
 		{
@@ -326,6 +320,7 @@ namespace ResourceGrabber {
 		System::Void txtPath_DragLeave(System::Object^  sender, System::EventArgs^  e);
 		System::Void txtPath_DragOver(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e);
 
-	};
+
+};
 }
 

@@ -15,6 +15,17 @@ using namespace Ambiesoft;
 
 namespace ResourceGrabber {
 
+	FormMain::FormMain()
+	{
+		InitializeComponent();
+
+		int intval;
+		Profile::GetInt(SECTION_OPTION, KEY_SELECTEDTAB, 0, intval, IniPath);
+		if (0 <= intval && intval < tabMain->TabCount)
+		{
+			tabMain->SelectedIndex = intval;
+		}
+	}
 	void FormMain::AddToErrorLog(String^ text, DWORD dwLastError)
 	{
 		StringBuilder sb;
@@ -160,14 +171,11 @@ namespace ResourceGrabber {
 		
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
-		this->Text = ProductName;
+		this->Text = String::Format(L"{0} ({1})",
+			ProductName, 
+			System::Diagnostics::Process::GetCurrentProcess()->Id);
 
-		int intval;
-		Profile::GetInt(SECTION_OPTION, KEY_SELECTEDTAB, 0, intval, IniPath);
-		if (0 <= intval && intval < tabMain->TabCount)
-		{
-			tabMain->SelectedIndex = intval;
-		}
+
 	}
 	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
 	{
@@ -179,11 +187,7 @@ namespace ResourceGrabber {
 			CppUtils::Alert(I18N(L"Failed to save ini."));
 		}
 	}
-	String^ FormMain::IniPath::get()
-	{
-		return Path::Combine(Path::GetDirectoryName(Application::ExecutablePath),
-			Application::ProductName + L".ini");
-	}
+
 
 	System::Void FormMain::txtPath_DragDrop(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e)
 	{
