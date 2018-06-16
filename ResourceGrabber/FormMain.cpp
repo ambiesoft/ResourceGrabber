@@ -171,11 +171,10 @@ namespace ResourceGrabber {
 		
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
-		this->Text = String::Format(L"{0} ({1})",
+		this->Text = String::Format(L"{0} ({1}{2})",
 			ProductName, 
-			System::Diagnostics::Process::GetCurrentProcess()->Id);
-
-
+			System::Diagnostics::Process::GetCurrentProcess()->Id,
+			Environment::Is64BitProcess ? L" x64" : L"");
 	}
 	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
 	{
