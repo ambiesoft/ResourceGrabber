@@ -137,11 +137,19 @@ namespace ResourceGrabber {
 	}
 
 
-	System::Void FormMain::btnOpenWithNoShare_Click(System::Object^  sender, System::EventArgs^  e)
+	System::Void FormMain::btnOpenFile_Click(System::Object^  sender, System::EventArgs^  e)
 	{
+		DWORD dwShareMode = 0;
+		if (chkShareRead->Checked)
+			dwShareMode |= FILE_SHARE_READ;
+		if (chkShareWrite->Checked)
+			dwShareMode |= FILE_SHARE_WRITE;
+		if (chkShareDelete->Checked)
+			dwShareMode |= FILE_SHARE_DELETE;
+
 		hFile_ = CreateFile(getStdWstring(txtPath->Text).c_str(),
 			GENERIC_READ,
-			0, // share none
+			dwShareMode,
 			NULL, //sec
 			OPEN_EXISTING,
 			FILE_ATTRIBUTE_NORMAL,
