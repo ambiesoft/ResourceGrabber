@@ -65,6 +65,7 @@
       <Filter>3 Resource Files</Filter>
     </None>
     <None Include="Readme.txt" />
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
