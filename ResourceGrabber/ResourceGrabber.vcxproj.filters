@@ -36,6 +36,12 @@
     <ClCompile Include="..\..\lsMisc\GetOpenFile.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CListViewOpenFilesData.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FormMainInitializeComponent.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\amblibcpp\amblibcpp\amblibcpp.h">
@@ -57,6 +63,9 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lsMisc\GetOpenFile.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CListViewOpenFilesData.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>
