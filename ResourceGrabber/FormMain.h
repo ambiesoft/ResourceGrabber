@@ -27,6 +27,9 @@ namespace ResourceGrabber {
 	private: System::Windows::Forms::CheckBox^  chkShareWrite;
 	private: System::Windows::Forms::ListView^  lvOpenFiles;
 	private: System::Windows::Forms::ComboBox^  cmbFile;
+	private: System::Windows::Forms::TabPage^  tabAbout;
+	private: System::Windows::Forms::LinkLabel^  linkWebpage;
+	private: System::Windows::Forms::TextBox^  txtVersion;
 
 
 		static initonly String^ inipath_;
@@ -131,6 +134,7 @@ namespace ResourceGrabber {
 		System::Void cmbFile_DragLeave(System::Object^  sender, System::EventArgs^  e);
 		System::Void cmbFile_DragOver(System::Object^  sender, System::Windows::Forms::DragEventArgs^  e);
 		System::Void lvOpenFiles_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+		System::Void linkWebpage_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
 
 };
 }

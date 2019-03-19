@@ -73,7 +73,6 @@
     <None Include="app.ico">
       <Filter>3 Resource Files</Filter>
     </None>
-    <None Include="Readme.txt" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resX">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.ja-JP.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

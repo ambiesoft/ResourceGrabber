@@ -268,10 +268,14 @@ namespace ResourceGrabber {
 		
 	System::Void FormMain::FormMain_Load(System::Object^  sender, System::EventArgs^  e)
 	{
-		this->Text = String::Format(L"{0} ({1}{2})",
+		this->Text = String::Format(L"{0} (pid={1}){2}",
 			ProductName, 
 			System::Diagnostics::Process::GetCurrentProcess()->Id,
-			Environment::Is64BitProcess ? L" x64" : L"");
+			Environment::Is64BitProcess ? L" (x64)" : L"");
+
+		txtVersion->Text = String::Format(L"{0} version {1}",
+			Application::ProductName,
+			AmbLib::getAssemblyVersion(System::Reflection::Assembly::GetExecutingAssembly(), 3));
 	}
 	System::Void FormMain::FormMain_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e)
 	{
@@ -335,4 +339,15 @@ namespace ResourceGrabber {
 			e->Effect = DragDropEffects::Copy;
 	}
 
+	System::Void FormMain::linkWebpage_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
+	{
+		try
+		{
+			System::Diagnostics::Process::Start("https://github.com/ambiesoft/ResourceGrabber");
+		}
+		catch (Exception^ ex)
+		{
+			CppUtils::Alert(ex);
+		}
+	}
 }

@@ -28,6 +28,9 @@ namespace ResourceGrabber {
 		this->btnOpenFile = (gcnew System::Windows::Forms::Button());
 		this->btnBrowse = (gcnew System::Windows::Forms::Button());
 		this->rtxtLog = (gcnew System::Windows::Forms::RichTextBox());
+		this->tabAbout = (gcnew System::Windows::Forms::TabPage());
+		this->txtVersion = (gcnew System::Windows::Forms::TextBox());
+		this->linkWebpage = (gcnew System::Windows::Forms::LinkLabel());
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->spRoot))->BeginInit();
 		this->spRoot->Panel1->SuspendLayout();
 		this->spRoot->Panel2->SuspendLayout();
@@ -35,6 +38,7 @@ namespace ResourceGrabber {
 		this->tabMain->SuspendLayout();
 		this->pageClipBoard->SuspendLayout();
 		this->pageFile->SuspendLayout();
+		this->tabAbout->SuspendLayout();
 		this->SuspendLayout();
 		// 
 		// spRoot
@@ -44,29 +48,28 @@ namespace ResourceGrabber {
 		// 
 		// spRoot.Panel1
 		// 
-		resources->ApplyResources(this->spRoot->Panel1, L"spRoot.Panel1");
 		this->spRoot->Panel1->Controls->Add(this->tabMain);
 		// 
 		// spRoot.Panel2
 		// 
-		resources->ApplyResources(this->spRoot->Panel2, L"spRoot.Panel2");
 		this->spRoot->Panel2->Controls->Add(this->rtxtLog);
 		// 
 		// tabMain
 		// 
-		resources->ApplyResources(this->tabMain, L"tabMain");
 		this->tabMain->Controls->Add(this->pageClipBoard);
 		this->tabMain->Controls->Add(this->pageFile);
+		this->tabMain->Controls->Add(this->tabAbout);
+		resources->ApplyResources(this->tabMain, L"tabMain");
 		this->tabMain->Name = L"tabMain";
 		this->tabMain->SelectedIndex = 0;
 		// 
 		// pageClipBoard
 		// 
-		resources->ApplyResources(this->pageClipBoard, L"pageClipBoard");
 		this->pageClipBoard->Controls->Add(this->btnEmptyClipboard);
 		this->pageClipBoard->Controls->Add(this->btnSetTextOnClipbard);
 		this->pageClipBoard->Controls->Add(this->btnOpenClipboard);
 		this->pageClipBoard->Controls->Add(this->btnCloseClipboard);
+		resources->ApplyResources(this->pageClipBoard, L"pageClipBoard");
 		this->pageClipBoard->Name = L"pageClipBoard";
 		this->pageClipBoard->UseVisualStyleBackColor = true;
 		// 
@@ -100,7 +103,6 @@ namespace ResourceGrabber {
 		// 
 		// pageFile
 		// 
-		resources->ApplyResources(this->pageFile, L"pageFile");
 		this->pageFile->Controls->Add(this->cmbFile);
 		this->pageFile->Controls->Add(this->lvOpenFiles);
 		this->pageFile->Controls->Add(this->chkShareDelete);
@@ -109,13 +111,14 @@ namespace ResourceGrabber {
 		this->pageFile->Controls->Add(this->btnCloseHandle);
 		this->pageFile->Controls->Add(this->btnOpenFile);
 		this->pageFile->Controls->Add(this->btnBrowse);
+		resources->ApplyResources(this->pageFile, L"pageFile");
 		this->pageFile->Name = L"pageFile";
 		this->pageFile->UseVisualStyleBackColor = true;
 		// 
 		// cmbFile
 		// 
-		resources->ApplyResources(this->cmbFile, L"cmbFile");
 		this->cmbFile->AllowDrop = true;
+		resources->ApplyResources(this->cmbFile, L"cmbFile");
 		this->cmbFile->FormattingEnabled = true;
 		this->cmbFile->Name = L"cmbFile";
 		this->cmbFile->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &FormMain::cmbFile_DragDrop);
@@ -177,6 +180,27 @@ namespace ResourceGrabber {
 		resources->ApplyResources(this->rtxtLog, L"rtxtLog");
 		this->rtxtLog->Name = L"rtxtLog";
 		// 
+		// tabAbout
+		// 
+		this->tabAbout->Controls->Add(this->linkWebpage);
+		this->tabAbout->Controls->Add(this->txtVersion);
+		resources->ApplyResources(this->tabAbout, L"tabAbout");
+		this->tabAbout->Name = L"tabAbout";
+		this->tabAbout->UseVisualStyleBackColor = true;
+		// 
+		// txtVersion
+		// 
+		resources->ApplyResources(this->txtVersion, L"txtVersion");
+		this->txtVersion->Name = L"txtVersion";
+		this->txtVersion->ReadOnly = true;
+		// 
+		// linkWebpage
+		// 
+		resources->ApplyResources(this->linkWebpage, L"linkWebpage");
+		this->linkWebpage->Name = L"linkWebpage";
+		this->linkWebpage->TabStop = true;
+		this->linkWebpage->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &FormMain::linkWebpage_LinkClicked);
+		// 
 		// FormMain
 		// 
 		resources->ApplyResources(this, L"$this");
@@ -193,6 +217,8 @@ namespace ResourceGrabber {
 		this->pageClipBoard->ResumeLayout(false);
 		this->pageFile->ResumeLayout(false);
 		this->pageFile->PerformLayout();
+		this->tabAbout->ResumeLayout(false);
+		this->tabAbout->PerformLayout();
 		this->ResumeLayout(false);
 
 	}
