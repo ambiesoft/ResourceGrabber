@@ -9,3 +9,6 @@
 /ResourceGrabber/Debug
 /ResourceGrabber/Release
 /ResourceGrabber/*.user
+
+*.aps
+.*~
