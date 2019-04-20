@@ -136,6 +136,7 @@ namespace ResourceGrabber {
 		System::Void lvOpenFiles_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 		System::Void linkWebpage_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
 
+		void OnTestClick(System::Object^ sender, System::EventArgs^ e);
 };
 }
 

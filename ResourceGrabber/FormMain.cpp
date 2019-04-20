@@ -62,7 +62,19 @@ namespace ResourceGrabber {
 		Profile::GetBool(SECTION_OPTION, KEY_CHECKBOX_ + chkShareDelete->Name, false, boolval, ini);
 		chkShareDelete->Checked = boolval;
 
+#ifdef _DEBUG
+		Button^ btnTest = gcnew Button();
+		btnTest->Text = "TEST";
+		btnTest->Click += gcnew System::EventHandler(this, &FormMain::OnTestClick);
+		tabAbout->Controls->Add(btnTest);
+#endif
 	}
+
+	void FormMain::OnTestClick(System::Object^ sender, System::EventArgs^ e)
+	{
+		CppUtils::Info("TEST");
+	}
+
 	void FormMain::AddToErrorLog(String^ text, DWORD dwLastError)
 	{
 		StringBuilder sb;
@@ -351,3 +363,4 @@ namespace ResourceGrabber {
 		}
 	}
 }
+

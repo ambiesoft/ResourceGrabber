@@ -44,9 +44,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\amblibcpp\amblibcpp\amblibcpp.h">
-      <Filter>1 Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FormMain.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
@@ -85,6 +82,12 @@
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.ja-JP.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceGrabberStrings.resx">
+      <Filter>3 Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceGrabberStrings.ja-JP.resx">
       <Filter>3 Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
