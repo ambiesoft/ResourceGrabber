@@ -9,4 +9,4 @@
 #include "../../lsMisc/getStdString.net.h"
 
 
-#define I18N(s) (s)
+#define I18N(s) (Program::GetString(s))

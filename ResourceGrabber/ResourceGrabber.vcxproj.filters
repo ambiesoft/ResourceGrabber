@@ -65,6 +65,9 @@
     <ClInclude Include="CListViewOpenFilesData.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceGrabber.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico">

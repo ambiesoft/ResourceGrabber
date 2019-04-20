@@ -1,15 +1,21 @@
 
 #include "stdafx.h"
+
+#include "ResourceGrabber.h"
+
 #include "FormMain.h"
 
-using namespace ResourceGrabber;
+namespace ResourceGrabber {
 
-[STAThreadAttribute]
-int main(array<System::String ^> ^args)
-{
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false); 
+	int Program::main(array<System::String^>^ args)
+	{
+		Application::EnableVisualStyles();
+		Application::SetCompatibleTextRenderingDefault(false);
 
-	Application::Run(gcnew FormMain());
-	return 0;
+		Application::Run(gcnew FormMain());
+
+		rsu_->showUnI18Ned();
+		return 0;
+	}
+
 }

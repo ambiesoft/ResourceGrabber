@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "ResourceGrabber.h"
 
 #include "FormMain.h"
 #include "CListViewOpenFilesData.h"
@@ -72,7 +73,7 @@ namespace ResourceGrabber {
 
 	void FormMain::OnTestClick(System::Object^ sender, System::EventArgs^ e)
 	{
-		CppUtils::Info("TEST");
+		CppUtils::Info(I18N("TEST"));
 	}
 
 	void FormMain::AddToErrorLog(String^ text, DWORD dwLastError)
