@@ -30,6 +30,9 @@ namespace ResourceGrabber {
 	private: System::Windows::Forms::TabPage^  tabAbout;
 	private: System::Windows::Forms::LinkLabel^  linkWebpage;
 	private: System::Windows::Forms::TextBox^  txtVersion;
+	private: System::Windows::Forms::TabPage^ pagePort;
+	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
+	private: System::Windows::Forms::TextBox^ txtPort;
 
 
 		static initonly String^ inipath_;
