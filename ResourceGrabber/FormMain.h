@@ -94,8 +94,18 @@ namespace ResourceGrabber {
 				return inipath_;
 			}
 		}
+		int logLine_ = 0;
+		literal int MAX_LOGLINE = 999;
+		void AppendLogLineNumber()
+		{
+			++logLine_;
+			rtxtLog->AppendText(String::Format(L"{0:000}:", logLine_));
+			if (logLine_ >= MAX_LOGLINE)
+				logLine_ = 0;
+		}
 		void AddToLog(String^ text)
 		{
+			AppendLogLineNumber();
 			rtxtLog->AppendText(text);
 			rtxtLog->AppendText(Environment::NewLine);
 
