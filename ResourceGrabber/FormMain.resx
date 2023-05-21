@@ -568,7 +568,7 @@
     <value>True</value>
   </data>
   <data name="linkWebpage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 38</value>
+    <value>645, 29</value>
   </data>
   <data name="linkWebpage.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -578,6 +578,9 @@
   </data>
   <data name="linkWebpage.Text" xml:space="preserve">
     <value>&amp;Go to Webpage</value>
+  </data>
+  <data name="linkWebpage.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;linkWebpage.Name" xml:space="preserve">
     <value>linkWebpage</value>

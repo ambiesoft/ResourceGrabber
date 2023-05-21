@@ -27,13 +27,13 @@ namespace ResourceGrabber {
 		this->btnCloseHandle = (gcnew System::Windows::Forms::Button());
 		this->btnOpenFile = (gcnew System::Windows::Forms::Button());
 		this->btnBrowse = (gcnew System::Windows::Forms::Button());
+		this->pagePort = (gcnew System::Windows::Forms::TabPage());
+		this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
+		this->txtPort = (gcnew System::Windows::Forms::TextBox());
 		this->tabAbout = (gcnew System::Windows::Forms::TabPage());
 		this->linkWebpage = (gcnew System::Windows::Forms::LinkLabel());
 		this->txtVersion = (gcnew System::Windows::Forms::TextBox());
 		this->rtxtLog = (gcnew System::Windows::Forms::RichTextBox());
-		this->pagePort = (gcnew System::Windows::Forms::TabPage());
-		this->txtPort = (gcnew System::Windows::Forms::TextBox());
-		this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->spRoot))->BeginInit();
 		this->spRoot->Panel1->SuspendLayout();
 		this->spRoot->Panel2->SuspendLayout();
@@ -41,9 +41,9 @@ namespace ResourceGrabber {
 		this->tabMain->SuspendLayout();
 		this->pageClipBoard->SuspendLayout();
 		this->pageFile->SuspendLayout();
-		this->tabAbout->SuspendLayout();
 		this->pagePort->SuspendLayout();
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
+		this->tabAbout->SuspendLayout();
 		this->SuspendLayout();
 		// 
 		// spRoot
@@ -181,6 +181,24 @@ namespace ResourceGrabber {
 		this->btnBrowse->UseVisualStyleBackColor = true;
 		this->btnBrowse->Click += gcnew System::EventHandler(this, &FormMain::btnBrowse_Click);
 		// 
+		// pagePort
+		// 
+		this->pagePort->Controls->Add(this->numericUpDown1);
+		this->pagePort->Controls->Add(this->txtPort);
+		resources->ApplyResources(this->pagePort, L"pagePort");
+		this->pagePort->Name = L"pagePort";
+		this->pagePort->UseVisualStyleBackColor = true;
+		// 
+		// numericUpDown1
+		// 
+		resources->ApplyResources(this->numericUpDown1, L"numericUpDown1");
+		this->numericUpDown1->Name = L"numericUpDown1";
+		// 
+		// txtPort
+		// 
+		resources->ApplyResources(this->txtPort, L"txtPort");
+		this->txtPort->Name = L"txtPort";
+		// 
 		// tabAbout
 		// 
 		this->tabAbout->Controls->Add(this->linkWebpage);
@@ -207,24 +225,6 @@ namespace ResourceGrabber {
 		resources->ApplyResources(this->rtxtLog, L"rtxtLog");
 		this->rtxtLog->Name = L"rtxtLog";
 		// 
-		// pagePort
-		// 
-		this->pagePort->Controls->Add(this->numericUpDown1);
-		this->pagePort->Controls->Add(this->txtPort);
-		resources->ApplyResources(this->pagePort, L"pagePort");
-		this->pagePort->Name = L"pagePort";
-		this->pagePort->UseVisualStyleBackColor = true;
-		// 
-		// txtPort
-		// 
-		resources->ApplyResources(this->txtPort, L"txtPort");
-		this->txtPort->Name = L"txtPort";
-		// 
-		// numericUpDown1
-		// 
-		resources->ApplyResources(this->numericUpDown1, L"numericUpDown1");
-		this->numericUpDown1->Name = L"numericUpDown1";
-		// 
 		// FormMain
 		// 
 		resources->ApplyResources(this, L"$this");
@@ -241,11 +241,11 @@ namespace ResourceGrabber {
 		this->pageClipBoard->ResumeLayout(false);
 		this->pageFile->ResumeLayout(false);
 		this->pageFile->PerformLayout();
-		this->tabAbout->ResumeLayout(false);
-		this->tabAbout->PerformLayout();
 		this->pagePort->ResumeLayout(false);
 		this->pagePort->PerformLayout();
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
+		this->tabAbout->ResumeLayout(false);
+		this->tabAbout->PerformLayout();
 		this->ResumeLayout(false);
 
 	}
