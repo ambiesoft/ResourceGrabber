@@ -128,13 +128,37 @@
   <data name="spRoot.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
   </data>
+  <data name="btnOpenClipboardWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 100</value>
+  </data>
+  <data name="btnOpenClipboardWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnOpenClipboardWindow.TabIndex" type="System.Int32, mscorlib">
+    <value>350</value>
+  </data>
+  <data name="btnOpenClipboardWindow.Text" xml:space="preserve">
+    <value>GetOpenClipboardWindow</value>
+  </data>
+  <data name="&gt;&gt;btnOpenClipboardWindow.Name" xml:space="preserve">
+    <value>btnOpenClipboardWindow</value>
+  </data>
+  <data name="&gt;&gt;btnOpenClipboardWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpenClipboardWindow.Parent" xml:space="preserve">
+    <value>pageClipBoard</value>
+  </data>
+  <data name="&gt;&gt;btnOpenClipboardWindow.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnEmptyClipboard.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 38</value>
   </data>
   <data name="btnEmptyClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 25</value>
+    <value>161, 25</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnEmptyClipboard.TabIndex" type="System.Int32, mscorlib">
     <value>200</value>
   </data>
@@ -151,13 +175,13 @@
     <value>pageClipBoard</value>
   </data>
   <data name="&gt;&gt;btnEmptyClipboard.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnSetTextOnClipbard.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 69</value>
   </data>
   <data name="btnSetTextOnClipbard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 25</value>
+    <value>161, 25</value>
   </data>
   <data name="btnSetTextOnClipbard.TabIndex" type="System.Int32, mscorlib">
     <value>300</value>
@@ -175,13 +199,13 @@
     <value>pageClipBoard</value>
   </data>
   <data name="&gt;&gt;btnSetTextOnClipbard.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnOpenClipboard.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 7</value>
   </data>
   <data name="btnOpenClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 25</value>
+    <value>161, 25</value>
   </data>
   <data name="btnOpenClipboard.TabIndex" type="System.Int32, mscorlib">
     <value>100</value>
@@ -199,7 +223,7 @@
     <value>pageClipBoard</value>
   </data>
   <data name="&gt;&gt;btnOpenClipboard.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnCloseClipboard.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -226,7 +250,7 @@
     <value>pageClipBoard</value>
   </data>
   <data name="&gt;&gt;btnCloseClipboard.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="pageClipBoard.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

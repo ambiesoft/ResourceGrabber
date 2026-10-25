@@ -1,6 +1,5 @@
 #pragma once
 
-
 namespace ResourceGrabber {
 
 	using namespace System;
@@ -33,6 +32,7 @@ namespace ResourceGrabber {
 	private: System::Windows::Forms::TabPage^ pagePort;
 	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
 	private: System::Windows::Forms::TextBox^ txtPort;
+	private: System::Windows::Forms::Button^ btnOpenClipboardWindow;
 
 
 		static initonly String^ inipath_;
@@ -150,6 +150,7 @@ namespace ResourceGrabber {
 		System::Void linkWebpage_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
 
 		void OnTestClick(System::Object^ sender, System::EventArgs^ e);
+		System::Void btnOpenClipboardWindow_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
 

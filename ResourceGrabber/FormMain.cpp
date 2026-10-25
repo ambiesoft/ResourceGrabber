@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "../../lsMisc/GetFileNameFromHwnd.h"
 
 #include "ResourceGrabber.h"
 
@@ -362,6 +363,23 @@ namespace ResourceGrabber {
 		{
 			CppUtils::Alert(ex);
 		}
+	}
+
+	System::Void FormMain::btnOpenClipboardWindow_Click(System::Object^ sender, System::EventArgs^ e) {
+		HWND hwnd = GetOpenClipboardWindow();
+		if(hwnd==nullptr)
+		{
+			AddToLog(I18N(L"GetOpenClipboardWindow returned NULL"));
+			return;
+		}
+
+		DWORD pid;
+		GetWindowThreadProcessId(hwnd, &pid);
+		wchar_t szFileName[MAX_PATH] = { 0 };
+		Ambiesoft::GetFileNameFromHwnd(hwnd, szFileName, MAX_PATH);
+
+		AddToLog(String::Format(I18N(L"GetOpenClipboardWindow returned hwnd={0} pid={1} file={2}"),
+			(ULONGLONG)hwnd, pid, gcnew String(szFileName)));
 	}
 }
 

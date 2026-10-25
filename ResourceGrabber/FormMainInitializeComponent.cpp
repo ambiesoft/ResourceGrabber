@@ -14,6 +14,7 @@ namespace ResourceGrabber {
 		this->spRoot = (gcnew System::Windows::Forms::SplitContainer());
 		this->tabMain = (gcnew System::Windows::Forms::TabControl());
 		this->pageClipBoard = (gcnew System::Windows::Forms::TabPage());
+		this->btnOpenClipboardWindow = (gcnew System::Windows::Forms::Button());
 		this->btnEmptyClipboard = (gcnew System::Windows::Forms::Button());
 		this->btnSetTextOnClipbard = (gcnew System::Windows::Forms::Button());
 		this->btnOpenClipboard = (gcnew System::Windows::Forms::Button());
@@ -71,6 +72,7 @@ namespace ResourceGrabber {
 		// 
 		// pageClipBoard
 		// 
+		this->pageClipBoard->Controls->Add(this->btnOpenClipboardWindow);
 		this->pageClipBoard->Controls->Add(this->btnEmptyClipboard);
 		this->pageClipBoard->Controls->Add(this->btnSetTextOnClipbard);
 		this->pageClipBoard->Controls->Add(this->btnOpenClipboard);
@@ -78,6 +80,13 @@ namespace ResourceGrabber {
 		resources->ApplyResources(this->pageClipBoard, L"pageClipBoard");
 		this->pageClipBoard->Name = L"pageClipBoard";
 		this->pageClipBoard->UseVisualStyleBackColor = true;
+		// 
+		// btnOpenClipboardWindow
+		// 
+		resources->ApplyResources(this->btnOpenClipboardWindow, L"btnOpenClipboardWindow");
+		this->btnOpenClipboardWindow->Name = L"btnOpenClipboardWindow";
+		this->btnOpenClipboardWindow->UseVisualStyleBackColor = true;
+		this->btnOpenClipboardWindow->Click += gcnew System::EventHandler(this, &FormMain::btnOpenClipboardWindow_Click);
 		// 
 		// btnEmptyClipboard
 		// 

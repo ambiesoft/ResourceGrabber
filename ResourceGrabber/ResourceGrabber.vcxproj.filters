@@ -42,6 +42,9 @@
     <ClCompile Include="FormMainInitializeComponent.cpp">
       <Filter>2 Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lsMisc\GetFileNameFromHwnd.cpp">
+      <Filter>2 Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormMain.h">
@@ -66,6 +69,9 @@
       <Filter>1 Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ResourceGrabber.h">
+      <Filter>1 Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lsMisc\GetFileNameFromHwnd.h">
       <Filter>1 Header Files</Filter>
     </ClInclude>
   </ItemGroup>
