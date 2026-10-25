@@ -1,0 +1,9 @@
+*.dsp
+*.pdf
+*.ico
+*.tlb
+*.rc
+*.rc2
+*.vcxproj.filters
+*.dsw
+*.resx
